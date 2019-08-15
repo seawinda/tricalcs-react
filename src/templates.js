@@ -1,31 +1,49 @@
-// MovieItem
-// <div className="card" style={{ width: "100%" }}>
-//   <img
-//     className="card-img-top"
-//     src={`https://image.tmdb.org/t/p/w500${item.backdrop_path ||
-//       item.poster_path}`}
-//     alt=""
-//   />
-//   <div className="card-body">
-//     <h6 className="card-title">{item.title}</h6>
-//     <div className="d-flex justify-content-between align-items-center">
-//       <p className="mb-0">Rating: {item.vote_average}</p>
-//       <button
-//         type="button"
-//         className="btn btn-success"
-//         onClick={this.changeWillWatch}
-//       >
-//         Will Watch
-//       </button>
-//     </div>
-//   </div>
-// </div>;
-// MovieListWillWatch
-// <h4>Will Watch: movies</h4>
-// <ul className="list-group">
-//     <li className="list-group-item">
-//       <div className="d-flex justify-content-between">
-//       </div>
-//     </li>
-//   ))}
-// </ul>
+<Slider
+    rootStyle={sliderStyle}
+    domain={[0, 100]}
+    step={1}
+    mode={2}
+    values={[10, 20, 30]}
+>
+    <Rail>
+        {({ getRailProps }) => (
+            <div style={railStyle} {...getRailProps()} />
+        )}
+    </Rail>
+    <Handles>
+        {({ handles, getHandleProps }) => (
+            <div className="slider-handles">
+                {handles.map(handle => (
+                    <Handle
+                        key={handle.id}
+                        handle={handle}
+                        getHandleProps={getHandleProps}
+                    />
+                ))}
+            </div>
+        )}
+    </Handles>
+    <Tracks left={false} right={false}>
+        {({ tracks, getTrackProps }) => (
+            <div className="slider-tracks">
+                {tracks.map(({ id, source, target }) => (
+                    <Track
+                        key={id}
+                        source={source}
+                        target={target}
+                        getTrackProps={getTrackProps}
+                    />
+                ))}
+            </div>
+        )}
+    </Tracks>
+    <Ticks count={15}> // generate approximately 15 ticks within the domain
+        {({ ticks }) => (
+            <div className="slider-ticks">
+                {ticks.map(tick => (
+                    <Tick key={tick.id} tick={tick} count={ticks.length} />
+                ))}
+            </div>
+        )}
+    </Ticks>
+</Slider>
