@@ -2,7 +2,7 @@
   "name": "tricalcs",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://seawinda.github.io/tricalcs",
+  "homepage": "https://seawinda.github.io/tricalcs/",
   "dependencies": {
     "bootstrap": "^4.3.1",
     "gh-pages": "^2.1.1",
