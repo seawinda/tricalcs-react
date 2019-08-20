@@ -17,7 +17,13 @@ const railStyle = {
     backgroundColor: '#8B9CB6',
 };
 
-export function Handle({ // your handle component
+const distance = 42.2;
+
+const distanceCuts = [10, 20, 30, 35, 40];
+
+
+
+export function Handle({
                            handle: { id, value, percent },
                            getHandleProps
                        }) {
@@ -101,13 +107,13 @@ function Tick({ tick, count }) {  // your own tick component
 class App extends Component {
     render() {
          return (
-            <div style={{ height: 120, width: '100%', marginTop: '50px' }}>
+            <div style={{ height: 120, width: '80%', marginTop: '50px' }}>
                 <Slider
                     rootStyle={sliderStyle}
-                    domain={[0, 100]}
-                    step={1}
+                    domain={[0, distance]}
+                    step={0.1}
                     mode={2}
-                    values={[20, 60, 80, 85]}
+                    values={distanceCuts}
                 >
                     <Rail>
                         {({ getRailProps }) => (
@@ -127,7 +133,8 @@ class App extends Component {
                             </div>
                         )}
                     </Handles>
-                    <Tracks left={false} right={false}>
+                    {/*<Tracks left={false} right={false}>*/}
+                    <Tracks>
                         {({ tracks, getTrackProps }) => (
                             <div className="slider-tracks">
                                 {tracks.map(({ id, source, target }) => (
@@ -141,7 +148,7 @@ class App extends Component {
                             </div>
                         )}
                     </Tracks>
-                    <Ticks count={15}>
+                    <Ticks count={distance}>
                         {({ ticks }) => (
                             <div className="slider-ticks">
                                 {ticks.map(tick => (
