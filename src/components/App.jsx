@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import { Slider, Rail, Handles, Tracks, Ticks } from 'react-compound-slider'
+import TimeField from 'react-simple-timefield'
+import TimeFormat from 'hh-mm-ss'
+
 
 const sliderStyle = {  // Give the slider some width
     position: 'relative',
@@ -16,12 +19,7 @@ const railStyle = {
     borderRadius: 5,
     backgroundColor: '#8B9CB6',
 };
-
-const distance = 42.2;
-
-const distanceCuts = [10, 20, 30, 35, 40];
-
-
+const distanceCuts = [1,2];
 
 export function Handle({
                            handle: { id, value, percent },
@@ -47,14 +45,18 @@ export function Handle({
             {...getHandleProps(id)}
         >
             <div style={{ fontFamily: 'Roboto', fontSize: 11, marginTop: -35 }}>
-                {value}
+                {value.toFixed(2)}
             </div>
+
         </div>
+
+
     )
 }
 
-function Track({ source, target, getTrackProps }) { // your own track component
+function Track({ source, target, getTrackProps, distance, formatTime }) { // your own track component
     return (
+
         <div
             style={{
                 position: 'absolute',
@@ -68,8 +70,22 @@ function Track({ source, target, getTrackProps }) { // your own track component
                 width: `${target.percent - source.percent}%`,
             }}
             {...getTrackProps()} // this will set up events if you want it to be clickeable (optional)
-        />
+        >
+            <div style={{ fontFamily: 'Roboto', fontSize: 11, marginTop: -35, left: '50%', position: 'absolute' }} data-pace={Pace(distance, formatTime, (target.percent - source.percent))}>
+                {Pace(distance, formatTime, (target.percent - source.percent))}
+            </div>
+
+        </div>
+
     )
+}
+function Pace(distance, formatTime, cut) {
+    if(distance>0) {
+        return (
+            TimeFormat.fromS(formatTime/distance)
+        )
+    }
+
 }
 
 function Tick({ tick, count }) {  // your own tick component
@@ -105,12 +121,43 @@ function Tick({ tick, count }) {  // your own tick component
 
 
 class App extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            distance: 10,
+            time: '00:40:00'
+        };
+
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.onTimeChange = this.onTimeChange.bind(this);
+
+    }
+
+    handleInputChange(event) {
+        const target = event.target;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const name = target.name;
+
+        this.setState({
+            [name]: parseFloat(value)
+        });
+    }
+    onTimeChange(time) {
+        this.setState({time});
+    }
+
+
+
+
+
+
     render() {
+        const {time} = this.state;
          return (
             <div style={{ height: 120, width: '80%', marginTop: '50px' }}>
                 <Slider
                     rootStyle={sliderStyle}
-                    domain={[0, distance]}
+                    domain={[0, this.state.distance]}
                     step={0.1}
                     mode={2}
                     values={distanceCuts}
@@ -138,17 +185,20 @@ class App extends Component {
                         {({ tracks, getTrackProps }) => (
                             <div className="slider-tracks">
                                 {tracks.map(({ id, source, target }) => (
+
                                     <Track
                                         key={id}
                                         source={source}
                                         target={target}
                                         getTrackProps={getTrackProps}
+                                        distance = {this.state.distance}
+                                        formatTime = {TimeFormat.toS(this.state.time)}
                                     />
                                 ))}
                             </div>
                         )}
                     </Tracks>
-                    <Ticks count={distance}>
+                    <Ticks count={this.state.distance}>
                         {({ ticks }) => (
                             <div className="slider-ticks">
                                 {ticks.map(tick => (
@@ -158,8 +208,26 @@ class App extends Component {
                         )}
                     </Ticks>
                 </Slider>
+                <div>
+                    <form>
+                        <label>
+                            Дистанция:
+                            <input name="distance" type="number" style={{width: 100}} value={this.state.distance} onChange={this.handleInputChange} />
+                        </label>
+                        <br />
+                        <label>
+                            Целевое время:
+                            {/*<input name="time" type="time" value={this.state.time} onChange={this.handleInputChange}  step="2" />*/}
+                            <TimeField value={time} showSeconds={true} style={{width: 100}} onChange={this.onTimeChange}  />
+                        </label>
+                        <br />
+
+                    </form>
+
+                </div>
             </div>
         )
+
     }
 }
 
