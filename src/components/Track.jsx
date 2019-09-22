@@ -3,11 +3,7 @@ import TimeField from 'react-simple-timefield'
 import TimeFormat from "hh-mm-ss";
 
 
-function cutPaceChange(distance) {
-    if(distance>0){
 
-    }
-}
 class Track extends Component {
 
     constructor(props) {
@@ -19,24 +15,24 @@ class Track extends Component {
             constPace: "00:00",
             cutPart: 0,
             cutTime: 0,
-            fullDistance: 0
+            trackId: '',
         };
         this.onPaceChange = this.onPaceChange.bind(this);
     }
 
     onPaceChange(trackPace) {
+
         if(TimeFormat.toS(trackPace)>0){
+            let cutChanged = this.state.trackId;
+            let cutTime = TimeFormat.toS(trackPace)*(this.state.cutPart)*this.props.distance;
             this.setState({trackPace});
             let constPace = trackPace;
             this.setState({constPace});
-            cutPaceChange(this..props.distance);
+            this.props.ourInputFunction(cutChanged, cutTime);
 
         }
     }
-    handleChange = (event) => {
-        // Here, we invoke the callback with the new value
-        this.props.onChange(event.target.value);
-    }
+
 
 
   render() {
@@ -49,19 +45,17 @@ class Track extends Component {
               source,
               target,
               pace,
-              distance,
-              cutTime
           },
       } = this;
       //const {trackPace} = this.state;
-      //this.state.trackPace = pace;
-      const constPace = this.state.trackPace;
+      this.state.trackPace = pace;
+      //const constPace = this.state.trackPace;
+      this.state.trackId = source.value;
       this.state.cutPart = (target.percent - source.percent)/100;
-      this.state.fullDistance = distance;
-      this.state.cutTime = TimeFormat.toS(this.state.trackPace)*(this.state.cutPart)*this.props.distance;
+      this.state.cutTime = TimeFormat.toS(this.state.constPace)*(this.state.cutPart)*this.props.distance;
 
       return (
-          <div key={id} data-pace={constPace} data-cuttime={this.state.cutTime}>
+          <div key={id} data-pace={this.state.constPace} data-cuttime={this.state.cutTime} data-id={this.state.trackId}>
               <div
                   style={{
                       position: 'absolute',
@@ -82,7 +76,6 @@ class Track extends Component {
               <div style={{ fontFamily: 'Roboto', fontSize: 11, marginTop:0, left: `${source.percent+1}%`, position: 'absolute' }} >
 
                   <TimeField value={pace} style={{width: 50}} onChange={this.onPaceChange}  />
-                  <input type="hidden" value={this.state.trackPace} onChange={this.props.ourInputFunction} />
 
               </div>
           </div>

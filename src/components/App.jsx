@@ -131,7 +131,8 @@ class App extends Component {
             time: '00:40:00',
             pace: '00:00',
             cuts: 2,
-            distanceCuts: [1]
+            distanceCuts: [1],
+            cutChanged: '',
 
         };
 
@@ -147,10 +148,13 @@ class App extends Component {
     state = {
         name: '',
     };
-    handleInputFunction(e) {
-        e.preventDefault();
-        this.setState({ name: e.target.value });
-        console.log(this.state.name);
+    handleInputFunction = (cutChanged, cutTime) => {
+        console.log('Изменился'+cutTime);
+        let elemCuts = document.getElementsByClassName('cut');
+        for (let i=0; i<elemCuts.length; i++) {
+            let cuttime = elemCuts[i].attributes.getNamedItem('data-cuttime').value;
+            console.log(cuttime);
+        }
     }
 
     handleInputChange(event) {
@@ -197,7 +201,6 @@ class App extends Component {
     render() {
 
         const {time} = this.state;
-        console.log(Pace(this.state.distance, TimeFormat.toS(this.state.time)))
         const pace = Pace(this.state.distance, TimeFormat.toS(this.state.time));
 
 
@@ -244,14 +247,11 @@ class App extends Component {
                                         pace={pace}
                                         value={this.state.value}
                                         ourInputFunction={this.handleInputFunction}
+                                    />
 
-                                    >
-
-                                    </Track>
 
 
                                 )) }
-
 
                             </div>
 
