@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Slider, Rail, Handles, Tracks, Ticks } from 'react-compound-slider'
+import { Slider, Rail, Handles, Tracks, Ticks} from 'react-compound-slider'
+import Track from './Track'
 import TimeField from 'react-simple-timefield'
 import TimeFormat from 'hh-mm-ss'
 
@@ -19,7 +20,7 @@ const railStyle = {
     borderRadius: 5,
     backgroundColor: '#8B9CB6',
 };
-const distanceCuts = [1,2];
+
 
 export function Handle({
                            handle: { id, value, percent },
@@ -54,7 +55,8 @@ export function Handle({
     )
 }
 
-function Track({ source, target, getTrackProps, distance, formatTime }) { // your own track component
+/*function Track({ source, target, getTrackProps, distance, formatTime }) { // your own track component
+    let cut = target.percent - source.percent;
     return (
 
         <div
@@ -71,14 +73,15 @@ function Track({ source, target, getTrackProps, distance, formatTime }) { // you
             }}
             {...getTrackProps()} // this will set up events if you want it to be clickeable (optional)
         >
-            <div style={{ fontFamily: 'Roboto', fontSize: 11, marginTop: -35, left: '50%', position: 'absolute' }} data-pace={Pace(distance, formatTime, (target.percent - source.percent))}>
-                {Pace(distance, formatTime, (target.percent - source.percent))}
+            <div style={{ fontFamily: 'Roboto', fontSize: 11, marginTop: -65, left: '50%', position: 'absolute' }}>
+
+                <TimeField value={Pace(distance, formatTime, cut)} style={{width: 50}} onChange={}  />
             </div>
 
         </div>
 
     )
-}
+}*/
 function Pace(distance, formatTime, cut) {
     if(distance>0) {
         return (
@@ -125,12 +128,29 @@ class App extends Component {
         super(props);
         this.state = {
             distance: 10,
-            time: '00:40:00'
+            time: '00:40:00',
+            pace: '00:00',
+            cuts: 2,
+            distanceCuts: [1]
+
         };
+
+
 
         this.handleInputChange = this.handleInputChange.bind(this);
         this.onTimeChange = this.onTimeChange.bind(this);
+        this.onCutsChange = this.onCutsChange.bind(this);
 
+        this.handleInputFunction = this.handleInputFunction.bind(this);
+    }
+
+    state = {
+        name: '',
+    };
+    handleInputFunction(e) {
+        e.preventDefault();
+        this.setState({ name: e.target.value });
+        console.log(this.state.name);
     }
 
     handleInputChange(event) {
@@ -144,6 +164,29 @@ class App extends Component {
     }
     onTimeChange(time) {
         this.setState({time});
+        Pace(this.state.distance, TimeFormat.toS(this.state.time));
+    }
+
+
+    onCutsChange(event) {
+        const target = event.target;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const name = target.name;
+        const arrayCuts = [];
+
+        if(parseInt(value)>0) {
+
+            for(let i=1; i<parseInt(value);i++) {
+                arrayCuts.push(i);
+            }
+            console.log(arrayCuts);
+        }
+        this.setState({
+            [name]: parseInt(value),
+            distanceCuts: arrayCuts
+        });
+
+
     }
 
 
@@ -152,7 +195,12 @@ class App extends Component {
 
 
     render() {
+
         const {time} = this.state;
+        console.log(Pace(this.state.distance, TimeFormat.toS(this.state.time)))
+        const pace = Pace(this.state.distance, TimeFormat.toS(this.state.time));
+
+
          return (
             <div style={{ height: 120, width: '80%', marginTop: '50px' }}>
                 <Slider
@@ -160,7 +208,7 @@ class App extends Component {
                     domain={[0, this.state.distance]}
                     step={0.1}
                     mode={2}
-                    values={distanceCuts}
+                    values={this.state.distanceCuts}
                 >
                     <Rail>
                         {({ getRailProps }) => (
@@ -193,9 +241,20 @@ class App extends Component {
                                         getTrackProps={getTrackProps}
                                         distance = {this.state.distance}
                                         formatTime = {TimeFormat.toS(this.state.time)}
-                                    />
-                                ))}
+                                        pace={pace}
+                                        value={this.state.value}
+                                        ourInputFunction={this.handleInputFunction}
+
+                                    >
+
+                                    </Track>
+
+
+                                )) }
+
+
                             </div>
+
                         )}
                     </Tracks>
                     <Ticks count={this.state.distance}>
@@ -221,10 +280,43 @@ class App extends Component {
                             <TimeField value={time} showSeconds={true} style={{width: 100}} onChange={this.onTimeChange}  />
                         </label>
                         <br />
+                        <label>
+                            Средний темп: {pace}
+
+                        </label>
+                        <br />
+                        <label>
+                            Количество отрезков:
+                            <input name="cuts" type="number" style={{width: 100}} value={this.state.cuts} onChange={this.onCutsChange} min={1} />
+                        </label>
+
 
                     </form>
 
                 </div>
+                {/*<div key={id} data-pace={pace}>
+                                        <div
+                                            style={{
+                                                position: 'absolute',
+                                                height: 10,
+                                                zIndex: 1,
+                                                marginTop: 35,
+                                                backgroundColor: '#546C91',
+                                                borderRadius: 5,
+                                                cursor: 'pointer',
+                                                left: `${source.percent}%`,
+                                                width: `${target.percent - source.percent}%`,
+                                            }}
+                                            {...getTrackProps()} // this will set up events if you want it to be clickeable (optional)
+                                        >
+
+
+                                        </div>
+                                        <div style={{ fontFamily: 'Roboto', fontSize: 11, marginTop:0, left: `${source.percent+1}%`, position: 'absolute' }} >
+
+                                        <TimeField value={pace} style={{width: 50}} onChange={this.onPaceChange}  />
+                                        </div>
+                                    </div>*/}
             </div>
         )
 
