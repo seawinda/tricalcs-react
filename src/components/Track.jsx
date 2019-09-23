@@ -16,6 +16,7 @@ class Track extends Component {
             cutPart: 0,
             cutTime: 0,
             trackId: '',
+            cutsItemUpdate: []
         };
         this.onPaceChange = this.onPaceChange.bind(this);
     }
@@ -28,7 +29,13 @@ class Track extends Component {
             this.setState({trackPace});
             let constPace = trackPace;
             this.setState({constPace});
-            this.props.ourInputFunction(cutChanged, cutTime);
+            this.setState({cutTime});
+
+            this.state.cutsItemUpdate[cutChanged] = ({
+                pace: trackPace,
+                cuttime: cutTime,
+            });
+            this.props.ourInputFunction(cutChanged, trackPace, cutTime);
 
         }
     }
@@ -45,6 +52,7 @@ class Track extends Component {
               source,
               target,
               pace,
+              cutsItem = []
           },
       } = this;
       //const {trackPace} = this.state;
@@ -52,7 +60,16 @@ class Track extends Component {
       //const constPace = this.state.trackPace;
       this.state.trackId = source.value;
       this.state.cutPart = (target.percent - source.percent)/100;
-      this.state.cutTime = TimeFormat.toS(this.state.constPace)*(this.state.cutPart)*this.props.distance;
+      this.state.cutTime = TimeFormat.toS(this.state.trackPace)*(this.state.cutPart)*this.props.distance;
+      const cuttime = this.state.cutTime;
+      this.state.cutsItemUpdate=this.props.cuts;
+      console.log(this.props.trackKey);
+
+      this.state.cutsItemUpdate[source.value] = ({
+          pace: pace,
+          cuttime,
+      });
+      cutsItem[source.value] = this.state.cutsItemUpdate[source.value];
 
       return (
           <div key={id} data-pace={this.state.constPace} data-cuttime={this.state.cutTime} data-id={this.state.trackId}>

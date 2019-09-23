@@ -91,6 +91,12 @@ function Pace(distance, formatTime, cut) {
 
 }
 
+function CutTime(pace, cutPart, distance) {
+    return (
+        TimeFormat.toS(pace)*(cutPart)*distance
+    )
+}
+
 function Tick({ tick, count }) {  // your own tick component
     return (
         <div>
@@ -130,10 +136,11 @@ class App extends Component {
             distance: 10,
             time: '00:40:00',
             pace: '00:00',
-            cuts: 2,
+            cutsCount: 2,
             distanceCuts: [1],
             cutChanged: '',
-
+            cuts: [],
+            newTracks: [],
         };
 
 
@@ -148,8 +155,17 @@ class App extends Component {
     state = {
         name: '',
     };
-    handleInputFunction = (cutChanged, cutTime) => {
-        console.log('Изменился'+cutTime);
+    handleInputFunction = (cutChanged, trackPace, cutTime) => {
+
+        const updatedCutsArray = [...this.state.cuts];
+
+        updatedCutsArray[cutChanged] = {
+            pace: trackPace,
+            cuttime: cutTime,
+        };
+
+        this.state.cuts= updatedCutsArray
+        console.log(this.state.cuts);
         let elemCuts = document.getElementsByClassName('cut');
         for (let i=0; i<elemCuts.length; i++) {
             let cuttime = elemCuts[i].attributes.getNamedItem('data-cuttime').value;
@@ -202,6 +218,9 @@ class App extends Component {
 
         const {time} = this.state;
         const pace = Pace(this.state.distance, TimeFormat.toS(this.state.time));
+        const cutsItem = [];
+        this.state.cuts= cutsItem;
+
 
 
          return (
@@ -237,6 +256,7 @@ class App extends Component {
                             <div className="slider-tracks">
                                 {tracks.map(({ id, source, target }) => (
 
+
                                     <Track
                                         key={id}
                                         source={source}
@@ -247,12 +267,19 @@ class App extends Component {
                                         pace={pace}
                                         value={this.state.value}
                                         ourInputFunction={this.handleInputFunction}
-                                    />
+                                        cutsItem = {cutsItem}
+                                        cuts = {this.state.cuts}
+                                    >
+
+
+
+                                    </Track>
 
 
 
                                 )) }
-
+                                {this.setState({newTracks: tracks})}
+                                {console.log(this.state.newTracks[0].key)}
                             </div>
 
                         )}
@@ -287,7 +314,7 @@ class App extends Component {
                         <br />
                         <label>
                             Количество отрезков:
-                            <input name="cuts" type="number" style={{width: 100}} value={this.state.cuts} onChange={this.onCutsChange} min={1} />
+                            <input name="cutsCount" type="number" style={{width: 100}} value={this.state.cutsCount} onChange={this.onCutsChange} min={1} />
                         </label>
 
 
