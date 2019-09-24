@@ -91,11 +91,11 @@ function Pace(distance, formatTime, cut) {
 
 }
 
-function CutTime(pace, cutPart, distance) {
+/*function CutTime(pace, cutPart, distance) {
     return (
         TimeFormat.toS(pace)*(cutPart)*distance
     )
-}
+}*/
 
 function Tick({ tick, count }) {  // your own tick component
     return (
@@ -141,6 +141,7 @@ class App extends Component {
             cutChanged: '',
             cuts: [],
             newTracks: [],
+            newTimeSec: 0,
         };
 
 
@@ -152,11 +153,8 @@ class App extends Component {
         this.handleInputFunction = this.handleInputFunction.bind(this);
     }
 
-    state = {
-        name: '',
-    };
-    handleInputFunction = (cutChanged, trackPace, cutTime) => {
 
+    handleInputFunction = (cutChanged, trackPace, cutTime) => {
         const updatedCutsArray = [...this.state.cuts];
 
         updatedCutsArray[cutChanged] = {
@@ -166,11 +164,13 @@ class App extends Component {
 
         this.state.cuts= updatedCutsArray
         console.log(this.state.cuts);
-        let elemCuts = document.getElementsByClassName('cut');
-        for (let i=0; i<elemCuts.length; i++) {
-            let cuttime = elemCuts[i].attributes.getNamedItem('data-cuttime').value;
-            console.log(cuttime);
+        this.setState({newTimeSec:0});
+        for (let i=0; i<this.state.cuts.length; i++) {
+            this.state.newTimeSec+=parseInt(this.state.cuts[i].cuttime);
         }
+
+        this.state.time=TimeFormat.fromS(this.state.newTimeSec, 'hh:mm:ss');
+        console.log(this.state.time, 'hh:mm:ss');
     }
 
     handleInputChange(event) {
@@ -199,7 +199,6 @@ class App extends Component {
             for(let i=1; i<parseInt(value);i++) {
                 arrayCuts.push(i);
             }
-            console.log(arrayCuts);
         }
         this.setState({
             [name]: parseInt(value),
@@ -216,10 +215,12 @@ class App extends Component {
 
     render() {
 
-        const {time} = this.state;
+        //const {time} = this.state;
         const pace = Pace(this.state.distance, TimeFormat.toS(this.state.time));
         const cutsItem = [];
         this.state.cuts= cutsItem;
+        //this.state.time= '00:40:00';
+        this.state.pace= pace;
 
 
 
@@ -254,11 +255,11 @@ class App extends Component {
                     <Tracks>
                         {({ tracks, getTrackProps }) => (
                             <div className="slider-tracks">
-                                {tracks.map(({ id, source, target }) => (
+                                {tracks.map(({ id, source, target }, index) => (
 
 
                                     <Track
-                                        key={id}
+                                        key = {id}
                                         source={source}
                                         target={target}
                                         getTrackProps={getTrackProps}
@@ -269,17 +270,12 @@ class App extends Component {
                                         ourInputFunction={this.handleInputFunction}
                                         cutsItem = {cutsItem}
                                         cuts = {this.state.cuts}
-                                    >
-
-
-
-                                    </Track>
-
-
-
+                                        cutsCount={this.state.cutsCount}
+                                        trackIndex={index}
+                                    />
                                 )) }
-                                {this.setState({newTracks: tracks})}
-                                {console.log(this.state.newTracks[0].key)}
+
+                                {console.log(this.state.cuts)}
                             </div>
 
                         )}
@@ -304,7 +300,7 @@ class App extends Component {
                         <label>
                             Целевое время:
                             {/*<input name="time" type="time" value={this.state.time} onChange={this.handleInputChange}  step="2" />*/}
-                            <TimeField value={time} showSeconds={true} style={{width: 100}} onChange={this.onTimeChange}  />
+                            <TimeField value={this.state.time} showSeconds={true} style={{width: 100}} onChange={this.onTimeChange}  />
                         </label>
                         <br />
                         <label>
