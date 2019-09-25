@@ -55,33 +55,6 @@ export function Handle({
     )
 }
 
-/*function Track({ source, target, getTrackProps, distance, formatTime }) { // your own track component
-    let cut = target.percent - source.percent;
-    return (
-
-        <div
-            style={{
-                position: 'absolute',
-                height: 10,
-                zIndex: 1,
-                marginTop: 35,
-                backgroundColor: '#546C91',
-                borderRadius: 5,
-                cursor: 'pointer',
-                left: `${source.percent}%`,
-                width: `${target.percent - source.percent}%`,
-            }}
-            {...getTrackProps()} // this will set up events if you want it to be clickeable (optional)
-        >
-            <div style={{ fontFamily: 'Roboto', fontSize: 11, marginTop: -65, left: '50%', position: 'absolute' }}>
-
-                <TimeField value={Pace(distance, formatTime, cut)} style={{width: 50}} onChange={}  />
-            </div>
-
-        </div>
-
-    )
-}*/
 function Pace(distance, formatTime, cut) {
     if(distance>0) {
         return (
@@ -91,11 +64,7 @@ function Pace(distance, formatTime, cut) {
 
 }
 
-/*function CutTime(pace, cutPart, distance) {
-    return (
-        TimeFormat.toS(pace)*(cutPart)*distance
-    )
-}*/
+
 
 function Tick({ tick, count }) {  // your own tick component
     return (
@@ -142,6 +111,10 @@ class App extends Component {
             cuts: [],
             newTracks: [],
             newTimeSec: 0,
+            newCutTimeSec:0,
+            isChangedTime: 0,
+            isChangedPaceProp: 0,
+
         };
 
 
@@ -150,11 +123,12 @@ class App extends Component {
         this.onTimeChange = this.onTimeChange.bind(this);
         this.onCutsChange = this.onCutsChange.bind(this);
 
-        this.handleInputFunction = this.handleInputFunction.bind(this);
+        this.onCutPaceChange = this.onCutPaceChange.bind(this);
+        this.onCutMove = this.onCutMove.bind(this);
     }
 
 
-    handleInputFunction = (cutChanged, trackPace, cutTime) => {
+    onCutPaceChange = (cutChanged, trackPace, cutTime, isChangedPaceProp) => {
         const updatedCutsArray = [...this.state.cuts];
 
         updatedCutsArray[cutChanged] = {
@@ -162,15 +136,25 @@ class App extends Component {
             cuttime: cutTime,
         };
 
-        this.state.cuts= updatedCutsArray
-        console.log(this.state.cuts);
-        this.setState({newTimeSec:0});
+        this.state.cuts= updatedCutsArray;
+
         for (let i=0; i<this.state.cuts.length; i++) {
             this.state.newTimeSec+=parseInt(this.state.cuts[i].cuttime);
         }
 
         this.state.time=TimeFormat.fromS(this.state.newTimeSec, 'hh:mm:ss');
-        console.log(this.state.time, 'hh:mm:ss');
+        this.setState({newTimeSec:0});
+        this.state.isChangedPaceProp=isChangedPaceProp;
+    }
+
+    onCutMove = () => {
+
+        for (let i=0; i<this.state.cuts.length; i++) {
+            this.state.newCutTimeSec+=parseInt(this.state.cuts[i].cuttime);
+        }
+
+        this.state.time=TimeFormat.fromS(this.state.newCutTimeSec, 'hh:mm:ss');
+        this.setState({newCutTimeSec:0});
     }
 
     handleInputChange(event) {
@@ -185,6 +169,7 @@ class App extends Component {
     onTimeChange(time) {
         this.setState({time});
         Pace(this.state.distance, TimeFormat.toS(this.state.time));
+        this.setState({isChangedTime: 1});
     }
 
 
@@ -208,6 +193,10 @@ class App extends Component {
 
     }
 
+    updateChangeTime = (value) => {
+        this.state.isChangedTime =value;
+    }
+
 
 
 
@@ -219,7 +208,6 @@ class App extends Component {
         const pace = Pace(this.state.distance, TimeFormat.toS(this.state.time));
         const cutsItem = [];
         this.state.cuts= cutsItem;
-        //this.state.time= '00:40:00';
         this.state.pace= pace;
 
 
@@ -232,6 +220,7 @@ class App extends Component {
                     step={0.1}
                     mode={2}
                     values={this.state.distanceCuts}
+                    onSlideEnd={this.onCutMove}
                 >
                     <Rail>
                         {({ getRailProps }) => (
@@ -266,16 +255,18 @@ class App extends Component {
                                         distance = {this.state.distance}
                                         formatTime = {TimeFormat.toS(this.state.time)}
                                         pace={pace}
-                                        value={this.state.value}
-                                        ourInputFunction={this.handleInputFunction}
+                                        onCutPaceChange={this.onCutPaceChange}
                                         cutsItem = {cutsItem}
                                         cuts = {this.state.cuts}
                                         cutsCount={this.state.cutsCount}
                                         trackIndex={index}
+                                        isChangedTime={this.state.isChangedTime}
+                                        isChangedPaceProp={this.state.isChangedPaceProp}
+                                        updateChangeTime = {this.updateChangeTime}
+                                        onCutMove={this.onCutMove}
                                     />
                                 )) }
 
-                                {console.log(this.state.cuts)}
                             </div>
 
                         )}
@@ -299,7 +290,6 @@ class App extends Component {
                         <br />
                         <label>
                             Целевое время:
-                            {/*<input name="time" type="time" value={this.state.time} onChange={this.handleInputChange}  step="2" />*/}
                             <TimeField value={this.state.time} showSeconds={true} style={{width: 100}} onChange={this.onTimeChange}  />
                         </label>
                         <br />
@@ -317,29 +307,7 @@ class App extends Component {
                     </form>
 
                 </div>
-                {/*<div key={id} data-pace={pace}>
-                                        <div
-                                            style={{
-                                                position: 'absolute',
-                                                height: 10,
-                                                zIndex: 1,
-                                                marginTop: 35,
-                                                backgroundColor: '#546C91',
-                                                borderRadius: 5,
-                                                cursor: 'pointer',
-                                                left: `${source.percent}%`,
-                                                width: `${target.percent - source.percent}%`,
-                                            }}
-                                            {...getTrackProps()} // this will set up events if you want it to be clickeable (optional)
-                                        >
 
-
-                                        </div>
-                                        <div style={{ fontFamily: 'Roboto', fontSize: 11, marginTop:0, left: `${source.percent+1}%`, position: 'absolute' }} >
-
-                                        <TimeField value={pace} style={{width: 50}} onChange={this.onPaceChange}  />
-                                        </div>
-                                    </div>*/}
             </div>
         )
 

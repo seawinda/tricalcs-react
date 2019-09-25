@@ -17,7 +17,7 @@ class Track extends Component {
             cutTime: 0,
             trackId: '',
             cutsItemUpdate: [],
-            isChanged: 0,
+            isChangedPace: 0,
         };
         this.onPaceChange = this.onPaceChange.bind(this);
     }
@@ -29,13 +29,14 @@ class Track extends Component {
             let cutTime = TimeFormat.toS(trackPace)*(this.state.cutPart)*this.props.distance;
             this.setState({trackPace});
             this.setState({cutTime});
-            this.setState({isChanged: 1})
+            this.setState({isChangedPace: 1});
+            let isChangedPaceProp = 1;
 
             this.state.cutsItemUpdate[cutChanged] = ({
                 pace: trackPace,
                 cuttime: cutTime,
             });
-            this.props.ourInputFunction(cutChanged, trackPace, cutTime);
+            this.props.onCutPaceChange(cutChanged, trackPace, cutTime, isChangedPaceProp);
 
         }
     }
@@ -57,19 +58,27 @@ class Track extends Component {
           },
       } = this;
 
-      const paceConst = pace;
-      console.log(paceConst);
-      this.state.constPace = pace;
+      const paceConst = this.state.constPace;
       this.state.trackId = trackIndex;
       this.state.cutPart = (target.percent - source.percent)/100;
       this.state.cutsItemUpdate=this.props.cuts;
-      if(this.state.isChanged===0) {
-          this.state.cutTime = TimeFormat.toS(this.state.constPace)*(this.state.cutPart)*this.props.distance;
+
+      if(this.props.isChangedTime===1||this.props.isChangedPaceProp===0) {
+          this.state.constPace = pace;
+          this.state.cutTime = TimeFormat.toS(this.state.constPace) * (this.state.cutPart) * this.props.distance;
           this.state.cutsItemUpdate[trackIndex] = ({
-              pace: this.state.trackPace,
+              pace: this.state.constPace,
               cuttime: this.state.cutTime,
           });
-      } else {
+
+      } else if(this.props.isChangedPaceProp===1&&this.state.isChangedPace===0&&this.props.isChangedTime===0) {
+          this.state.cutTime = TimeFormat.toS(this.state.constPace) * (this.state.cutPart) * this.props.distance;
+          this.state.cutsItemUpdate[trackIndex] = ({
+              pace: paceConst,
+              cuttime: this.state.cutTime,
+          });
+          this.props.updateChangeTime(0);
+      } else if(this.props.isChangedPaceProp===1&&this.state.isChangedPace===1&&this.props.isChangedTime===0) {
           this.state.cutTime = TimeFormat.toS(this.state.trackPace)*(this.state.cutPart)*this.props.distance;
           this.state.cutsItemUpdate[trackIndex] = ({
               pace: this.state.trackPace,
@@ -77,6 +86,7 @@ class Track extends Component {
           });
       }
       cutsItem[trackIndex] = this.state.cutsItemUpdate[trackIndex];
+      this.props.updateChangeTime(0);
 
       return (
           <div key={id} data-pace={this.state.cutsItemUpdate[trackIndex].pace} data-cuttime={this.state.cutsItemUpdate[trackIndex].cuttime} data-id={trackIndex}>
