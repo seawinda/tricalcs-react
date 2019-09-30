@@ -139,7 +139,7 @@ class App extends Component {
         this.state.cuts= updatedCutsArray;
 
         for (let i=0; i<this.state.cuts.length; i++) {
-            this.state.newTimeSec+=parseInt(this.state.cuts[i].cuttime);
+            this.state.newTimeSec+=Number(this.state.cuts[i].cuttime);
         }
 
         this.state.time=TimeFormat.fromS(this.state.newTimeSec, 'hh:mm:ss');
@@ -150,7 +150,7 @@ class App extends Component {
     onCutMove = () => {
 
         for (let i=0; i<this.state.cuts.length; i++) {
-            this.state.newCutTimeSec+=parseInt(this.state.cuts[i].cuttime);
+            this.state.newCutTimeSec+=Number(this.state.cuts[i].cuttime);
         }
 
         this.state.time=TimeFormat.fromS(this.state.newCutTimeSec, 'hh:mm:ss');
@@ -179,14 +179,14 @@ class App extends Component {
         const name = target.name;
         const arrayCuts = [];
 
-        if(parseInt(value)>0) {
+        if(Number(value)>0) {
 
-            for(let i=1; i<parseInt(value);i++) {
+            for(let i=1; i<Number(value);i++) {
                 arrayCuts.push(i);
             }
         }
         this.setState({
-            [name]: parseInt(value),
+            [name]: Number(value),
             distanceCuts: arrayCuts
         });
 
