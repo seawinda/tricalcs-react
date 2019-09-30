@@ -1,13 +1,13 @@
 {
-  "main.js": "/tricalcs/static/js/main.89610e1c.chunk.js",
-  "main.js.map": "/tricalcs/static/js/main.89610e1c.chunk.js.map",
-  "runtime~main.js": "/tricalcs/static/js/runtime~main.a46d7232.js",
-  "runtime~main.js.map": "/tricalcs/static/js/runtime~main.a46d7232.js.map",
-  "static/css/2.2ba07215.chunk.css": "/tricalcs/static/css/2.2ba07215.chunk.css",
-  "static/js/2.839fb83d.chunk.js": "/tricalcs/static/js/2.839fb83d.chunk.js",
-  "static/js/2.839fb83d.chunk.js.map": "/tricalcs/static/js/2.839fb83d.chunk.js.map",
-  "index.html": "/tricalcs/index.html",
-  "precache-manifest.197ae725c355505984a56fe6e74a7eeb.js": "/tricalcs/precache-manifest.197ae725c355505984a56fe6e74a7eeb.js",
-  "service-worker.js": "/tricalcs/service-worker.js",
-  "static/css/2.2ba07215.chunk.css.map": "/tricalcs/static/css/2.2ba07215.chunk.css.map"
+  "main.js": "/tricalcs-react/static/js/main.89610e1c.chunk.js",
+  "main.js.map": "/tricalcs-react/static/js/main.89610e1c.chunk.js.map",
+  "runtime~main.js": "/tricalcs-react/static/js/runtime~main.f57bb4f0.js",
+  "runtime~main.js.map": "/tricalcs-react/static/js/runtime~main.f57bb4f0.js.map",
+  "static/css/2.2ba07215.chunk.css": "/tricalcs-react/static/css/2.2ba07215.chunk.css",
+  "static/js/2.839fb83d.chunk.js": "/tricalcs-react/static/js/2.839fb83d.chunk.js",
+  "static/js/2.839fb83d.chunk.js.map": "/tricalcs-react/static/js/2.839fb83d.chunk.js.map",
+  "index.html": "/tricalcs-react/index.html",
+  "precache-manifest.7ae037ec1bb9853c479a08f0cde0bd08.js": "/tricalcs-react/precache-manifest.7ae037ec1bb9853c479a08f0cde0bd08.js",
+  "service-worker.js": "/tricalcs-react/service-worker.js",
+  "static/css/2.2ba07215.chunk.css.map": "/tricalcs-react/static/css/2.2ba07215.chunk.css.map"
 }

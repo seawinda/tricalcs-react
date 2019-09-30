@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/tricalcs/precache-manifest.197ae725c355505984a56fe6e74a7eeb.js"
+  "/tricalcs-react/precache-manifest.7ae037ec1bb9853c479a08f0cde0bd08.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/tricalcs/index.html", {
+workbox.routing.registerNavigationRoute("/tricalcs-react/index.html", {
   
   blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
 });
