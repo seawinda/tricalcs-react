@@ -1,0 +1,17 @@
+.main {
+  position: relative;
+}
+.main__wrapper {
+  margin: -75px auto 0;
+  max-width: 1500px;
+  background-color: #fff;
+  box-shadow: 0 0 62px rgba(12, 12, 12, 0.13);
+  box-sizing: border-box;
+  @media screen and (max-width: $desktop-width) {
+    margin: 0;
+  }
+  @media screen and (max-width: $vtablet-width) {
+    padding: 15px;
+    margin: 0;
+  }
+}

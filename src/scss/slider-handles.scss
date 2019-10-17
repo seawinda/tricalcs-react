@@ -1,0 +1,41 @@
+.slider-handles {
+
+}
+.slider-handles__item {
+  position: absolute;
+  margin-left: -15px;
+  margin-top: 25px;
+  z-index: 2;
+  width: 30px;
+  height: 30px;
+  border: 0;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 50%;
+  background-color: $scale;
+  color: $base-color;
+}
+.slider-handles__length {
+  font-size: 11px;
+  margin-top: -40px;
+}
+.slide-handle__track {
+  position: absolute;
+  height: 10px;
+  z-index: 1;
+  margin-top: 35px;
+  background-color: $scale;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.slide-handle__pace {
+  position: absolute;
+  font-size: 11px;
+  margin-top: 0;
+}
+.slide-handle__input {
+  width: 50px;
+  box-sizing: border-box;
+  padding: 3px;
+  border: 1px solid $base-color;
+}

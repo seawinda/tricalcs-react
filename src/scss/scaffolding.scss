@@ -1,0 +1,149 @@
+@font-face {
+  font-family: 'Montserrat';
+  src:
+          url('../fonts/montserrat-400-normal.woff2') format('woff2'),
+          url('../fonts/montserrat-400-normal.woff') format('woff'),
+          url('../fonts/montserrat-400-normal.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Montserrat';
+  src:
+          url('../fonts/montserrat-900-normal.woff2') format('woff2'),
+          url('../fonts/montserrat-900-normal.woff') format('woff'),
+          url('../fonts/montserrat-900-normal.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Bebas Neue';
+  src:
+          url('../fonts/bebasneue-700-normal.woff2') format('woff2'),
+          url('../fonts/bebasneue-700-normal.woff') format('woff'),
+          url('../fonts/bebasneue-700-normal.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+html,
+body {
+  min-width: 320px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: "CeraRoundPro", "Arial", sans-serif;
+  line-height: 1.2;
+  font-size: 14px;
+  color: $base-color;
+  font-weight: 400;
+  background-color: $bg;
+  @media screen and (min-width: $vtablet-width) {
+    font-size: 15px;
+    letter-spacing: 1px;
+  }
+}
+body {
+  overflow-y: scroll;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+a {
+  color: $base-color;
+  transition: all 0.3s;
+  &:hover,
+  &:active,
+  &:focus {
+    color: $base-color;
+  }
+  &.phone {
+    text-decoration: none;
+  }
+
+}
+
+.visually-hidden:not(:focus):not(:active) {
+  position: absolute;
+
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+
+  white-space: nowrap;
+
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+.clearfix::after {
+  display: table;
+  clear: both;
+  content: "";
+}
+
+.page-wrapper {
+  max-width: 375px;
+  padding: 0 10px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  @media screen and (min-width: $vtablet-width) {
+    max-width: 768px;
+    padding: 0 30px;
+  }
+  @media screen and (min-width: $tablet-width) {
+    max-width: 1020px;
+    padding: 0 10px;
+  }
+  @media screen and (min-width: $desktop-width) {
+    max-width: 1220px;
+    padding: 0 30px;
+  }
+}
+
+.button {
+  cursor: pointer;
+  box-sizing: border-box;
+  position: relative;
+  display: inline-block;
+  min-height: 60px;
+  text-decoration: none;
+  padding: 18px 35px;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 15px;
+  letter-spacing: 0.5px;
+  max-width: 100%;
+  text-align: center;
+  vertical-align: center;
+  color: #fdfffc;
+  border-radius: 30px;
+  border: none;
+  background-color: $pink;
+  transition: all 0.3s;
+  &:hover,
+  &:active {
+    color: #fdfffc;
+    background-color:  #c9005a;
+    box-shadow: 0px 6px 33.2px 6.8px rgba(231, 0, 103, 0.36);
+    transform: translateY(-20px);
+  }
+  &:focus {
+    outline: none;
+  }
+}
+
+

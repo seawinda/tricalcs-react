@@ -5,21 +5,6 @@ import TimeField from 'react-simple-timefield'
 import TimeFormat from 'hh-mm-ss'
 
 
-const sliderStyle = {  // Give the slider some width
-    position: 'relative',
-    width: '100%',
-    height: 80,
-    border: '1px solid steelblue',
-};
-
-const railStyle = {
-    position: 'absolute',
-    width: '100%',
-    height: 10,
-    marginTop: 35,
-    borderRadius: 5,
-    backgroundColor: '#8B9CB6',
-};
 
 
 export function Handle({
@@ -27,26 +12,15 @@ export function Handle({
                            getHandleProps
                        }) {
     return (
-        <div
+        <div className={'slider-handles__item'}
             style={{
                 left: `${percent}%`,
-                position: 'absolute',
-                marginLeft: -15,
-                marginTop: 25,
-                zIndex: 2,
-                width: 30,
-                height: 30,
-                border: 0,
-                textAlign: 'center',
-                cursor: 'pointer',
-                borderRadius: '50%',
-                backgroundColor: '#2C4870',
-                color: '#333',
+
             }}
             {...getHandleProps(id)}
         >
-            <div style={{ fontFamily: 'Roboto', fontSize: 11, marginTop: -35 }}>
-                {value.toFixed(2)}
+            <div className={'slider-handles__length'}>
+                {value.toFixed(2)}&nbsp;км
             </div>
 
         </div>
@@ -58,7 +32,7 @@ export function Handle({
 function Pace(distance, formatTime, cut) {
     if(distance>0) {
         return (
-            TimeFormat.fromS(formatTime/distance)
+            TimeFormat.fromS(formatTime/parseFloat(distance))
         )
     }
 
@@ -98,7 +72,7 @@ function Tick({ tick, count }) {  // your own tick component
 }
 
 
-class App extends Component {
+class Run extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -119,7 +93,7 @@ class App extends Component {
 
 
 
-        this.handleInputChange = this.handleInputChange.bind(this);
+        this.onDistanceChange = this.onDistanceChange.bind(this);
         this.onTimeChange = this.onTimeChange.bind(this);
         this.onCutsChange = this.onCutsChange.bind(this);
 
@@ -157,15 +131,19 @@ class App extends Component {
         this.setState({newCutTimeSec:0});
     }
 
-    handleInputChange(event) {
+    onDistanceChange(event) {
         const target = event.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
 
-        this.setState({
-            [name]: parseFloat(value)
-        });
+        if(value>0&&value<=300) {
+            console.log(value);
+            this.setState({
+                [name]: parseFloat(value)
+            });
+        }
     }
+
     onTimeChange(time) {
         this.setState({time});
         Pace(this.state.distance, TimeFormat.toS(this.state.time));
@@ -213,28 +191,29 @@ class App extends Component {
 
 
          return (
-            <div style={{ height: 120, width: '80%', marginTop: '50px' }}>
+            <div>
                 <Slider
-                    rootStyle={sliderStyle}
                     domain={[0, this.state.distance]}
                     step={0.1}
                     mode={2}
                     values={this.state.distanceCuts}
                     onSlideEnd={this.onCutMove}
+                    className={'scale'}
                 >
                     <Rail>
                         {({ getRailProps }) => (
-                            <div style={railStyle} {...getRailProps()} />
+                            <div className={'scale__rail'} {...getRailProps()} />
                         )}
                     </Rail>
                     <Handles>
                         {({ handles, getHandleProps }) => (
-                            <div className="slider-handles">
+                            <div className="slider-handles scale__handles">
                                 {handles.map(handle => (
                                     <Handle
                                         key={handle.id}
                                         handle={handle}
                                         getHandleProps={getHandleProps}
+
                                     />
                                 ))}
                             </div>
@@ -281,26 +260,23 @@ class App extends Component {
                         )}
                     </Ticks>
                 </Slider>
-                <div>
-                    <form>
-                        <label>
+                <div className={'scale-data'}>
+                    <form className={'scale-data__form'}>
+                        <label className={'scale-data__label'}>
                             Дистанция:
-                            <input name="distance" type="number" style={{width: 100}} value={this.state.distance} onChange={this.handleInputChange} />
+                            <input className={'scale-data__data'} name="distance" type="number" value={this.state.distance} onChange={this.onDistanceChange} />
                         </label>
-                        <br />
-                        <label>
+                        <label className={'scale-data__label'}>
                             Целевое время:
-                            <TimeField value={this.state.time} showSeconds={true} style={{width: 100}} onChange={this.onTimeChange}  />
+                            <TimeField className={'scale-data__data'} value={this.state.time} showSeconds={true} onChange={this.onTimeChange}  />
                         </label>
-                        <br />
-                        <label>
-                            Средний темп: {pace}
+                        <label className={'scale-data__label'}>
+                            Средний темп: <span className={'scale-data__data'}>{pace}</span>
 
                         </label>
-                        <br />
-                        <label>
+                        <label className={'scale-data__label'}>
                             Количество отрезков:
-                            <input name="cutsCount" type="number" style={{width: 100}} value={this.state.cutsCount} onChange={this.onCutsChange} min={1} />
+                            <input className={'scale-data__data'} name="cutsCount" type="number" value={this.state.cutsCount} onChange={this.onCutsChange} min={1} />
                         </label>
 
 
@@ -316,4 +292,4 @@ class App extends Component {
 
 
 
-export default App;
+export default Run;

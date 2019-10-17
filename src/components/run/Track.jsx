@@ -96,15 +96,9 @@ class Track extends Component {
 
       return (
           <div key={id} data-pace={this.state.cutsItemUpdate[trackIndex].pace} data-cuttime={this.state.cutsItemUpdate[trackIndex].cuttime} data-id={trackIndex}>
-              <div
+              <div className={'slide-handle__track'}
                   style={{
-                      position: 'absolute',
-                      height: 10,
-                      zIndex: 1,
-                      marginTop: 35,
-                      backgroundColor: '#546C91',
-                      borderRadius: 5,
-                      cursor: 'pointer',
+
                       left: `${source.percent}%`,
                       width: `${target.percent - source.percent}%`,
                   }}
@@ -113,9 +107,9 @@ class Track extends Component {
 
 
               </div>
-              <div style={{ fontFamily: 'Roboto', fontSize: 11, marginTop:0, left: `${source.percent+1}%`, position: 'absolute' }} >
+              <div className={'slide-handle__pace'} style={{ left: `${source.percent+1}%` }} >
 
-                  <TimeField value={this.state.cutsItemUpdate[trackIndex].pace} style={{width: 50}} onChange={this.onPaceChange}  />
+                  <TimeField  className={'slide-handle__input'} value={this.state.cutsItemUpdate[trackIndex].pace} onChange={this.onPaceChange}  />
 
               </div>
           </div>

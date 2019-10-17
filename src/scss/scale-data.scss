@@ -1,0 +1,19 @@
+.scale-data {
+
+}
+.scale-data__form {
+  display: table;
+}
+
+.scale-data__label {
+  display: block;
+  text-align: right;
+  margin-top: 10px;
+}
+.scale-data__data {
+  display: inline-block;
+  width: 70px !important;
+  padding: 3px;
+  text-align: left;
+  margin-left: 5px;
+}

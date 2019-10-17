@@ -1,0 +1,105 @@
+
+.header-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background-color: rgba(33, 33, 33, 0.25);
+  padding: 0 15px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+}
+.header-top__title {
+  color: #fff;
+  font-family: Arial, sans-serif;
+  font-weight: 900;
+  font-size: 15px;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  @media screen and (max-width: $vtablet-width) {
+    text-align: center;
+    letter-spacing: 0;
+    width: 100%;
+  }
+}
+.header__socials {
+  display: flex;
+  align-items: center;
+  width: 60px;
+  justify-content: space-between;
+  @media screen and (max-width: $vtablet-width) {
+   display: none;
+  }
+}
+.header__socials a {
+  color: #fff;
+}
+.header__socials .fa-instagram {
+  height: 25px;
+}
+.header__socials .fa-facebook-f {
+  height: 20px;
+}
+
+/*.header .page-wrapper {
+  display: flex;
+  justify-content: space-between;
+
+  @media screen and (min-width: $vtablet-width) {
+    padding-top: 17px;
+  }
+}
+.header__logo {
+  margin-top: 13px;
+  margin-right: auto;
+}
+
+.header__button {
+  display: none;
+  flex: none;
+  width: 200px;
+  font-size: 14px;
+  letter-spacing: 1px;
+  padding: 18px 30px;
+  white-space: nowrap;
+  background-color: transparent;
+  border: 2px solid #5489c3;
+
+  &:hover,
+  &:active {
+    background-color: #5489c3;
+    border: 2px solid #5489c3;
+    transform: translateX(-24px);
+    box-shadow: none;
+  }
+
+  @media screen and (min-width: $vtablet-width) {
+    display: block;
+  }
+}
+
+.header__burger {
+  margin-top: 17px;
+  margin-left: 20px;
+  flex: none;
+
+  @media screen and (min-width: $tablet-width) {
+    display: none;
+  }
+}
+
+.header__menu {
+  display: none;
+
+  @media screen and (min-width: $tablet-width) {
+    display: flex;
+    position: relative;
+    top: 2px;
+  }
+}
+*/

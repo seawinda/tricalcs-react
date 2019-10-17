@@ -1,13 +1,14 @@
 {
-  "main.js": "/tricalcs-react/static/js/main.89610e1c.chunk.js",
-  "main.js.map": "/tricalcs-react/static/js/main.89610e1c.chunk.js.map",
+  "main.css": "/tricalcs-react/static/css/main.9aff8db9.chunk.css",
+  "main.js": "/tricalcs-react/static/js/main.9a66753a.chunk.js",
+  "main.js.map": "/tricalcs-react/static/js/main.9a66753a.chunk.js.map",
   "runtime~main.js": "/tricalcs-react/static/js/runtime~main.f57bb4f0.js",
   "runtime~main.js.map": "/tricalcs-react/static/js/runtime~main.f57bb4f0.js.map",
-  "static/css/2.2ba07215.chunk.css": "/tricalcs-react/static/css/2.2ba07215.chunk.css",
-  "static/js/2.839fb83d.chunk.js": "/tricalcs-react/static/js/2.839fb83d.chunk.js",
-  "static/js/2.839fb83d.chunk.js.map": "/tricalcs-react/static/js/2.839fb83d.chunk.js.map",
+  "static/js/2.accee6e5.chunk.js": "/tricalcs-react/static/js/2.accee6e5.chunk.js",
+  "static/js/2.accee6e5.chunk.js.map": "/tricalcs-react/static/js/2.accee6e5.chunk.js.map",
   "index.html": "/tricalcs-react/index.html",
-  "precache-manifest.7ae037ec1bb9853c479a08f0cde0bd08.js": "/tricalcs-react/precache-manifest.7ae037ec1bb9853c479a08f0cde0bd08.js",
+  "precache-manifest.85444a3015ab733fa745b1e399fef31c.js": "/tricalcs-react/precache-manifest.85444a3015ab733fa745b1e399fef31c.js",
   "service-worker.js": "/tricalcs-react/service-worker.js",
-  "static/css/2.2ba07215.chunk.css.map": "/tricalcs-react/static/css/2.2ba07215.chunk.css.map"
+  "static/css/main.9aff8db9.chunk.css.map": "/tricalcs-react/static/css/main.9aff8db9.chunk.css.map",
+  "static/media/style.scss": "/tricalcs-react/static/media/montserrat-900-normal.e2091168.ttf"
 }
