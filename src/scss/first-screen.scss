@@ -5,4 +5,14 @@
   background-repeat: no-repeat;
   min-height: 600px;
   position: relative;
+  @media screen and (max-width: $desktop-width) {
+    min-height: 450px;
+  }
+  @media screen and (max-width: $tablet-width) {
+    min-height: 350px;
+  }
+  @media screen and (max-width: $vtablet-width) {
+    min-height: 200px;
+  }
+
 }
