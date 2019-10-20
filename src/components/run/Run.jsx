@@ -273,7 +273,7 @@ class Run extends Component {
                             <TimeField className={'scale-data__data'} value={this.state.time} showSeconds={true} onChange={this.onTimeChange}  />
                         </label>
                         <label className={'scale-data__label'}>
-                            Средний темп (мин.км): <span className={'scale-data__data'}>{pace}</span>
+                            Средний темп (мин/км): <span className={'scale-data__data'}>{pace}</span>
 
                         </label>
                         <label className={'scale-data__label'}>
