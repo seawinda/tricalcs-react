@@ -1,0 +1,15 @@
+.socials {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.socials .fa-instagram {
+  height: 25px;
+}
+.socials .fa-facebook-f {
+  height: 20px;
+}
+.socials__link {
+  margin-left: 20px;
+}

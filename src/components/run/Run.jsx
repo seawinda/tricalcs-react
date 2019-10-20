@@ -77,6 +77,7 @@ class Run extends Component {
         super(props);
         this.state = {
             distance: 10,
+            distanceInput: 10,
             time: '00:40:00',
             pace: '00:00',
             cutsCount: 2,
@@ -135,11 +136,12 @@ class Run extends Component {
         const target = event.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
-
+        this.setState({
+            [name]: value
+        });
         if(value>0&&value<=300) {
-            console.log(value);
             this.setState({
-                [name]: parseFloat(value)
+                distance: parseFloat(value)
             });
         }
     }
@@ -194,7 +196,7 @@ class Run extends Component {
             <div>
                 <Slider
                     domain={[0, this.state.distance]}
-                    step={0.1}
+                    step={0.01}
                     mode={2}
                     values={this.state.distanceCuts}
                     onSlideEnd={this.onCutMove}
@@ -264,7 +266,7 @@ class Run extends Component {
                     <form className={'scale-data__form'}>
                         <label className={'scale-data__label'}>
                             Дистанция:
-                            <input className={'scale-data__data'} name="distance" type="number" value={this.state.distance} onChange={this.onDistanceChange} />
+                            <input className={'scale-data__data'} name="distanceInput" type="number" value={this.state.distanceInput} onChange={this.onDistanceChange} />
                         </label>
                         <label className={'scale-data__label'}>
                             Целевое время:

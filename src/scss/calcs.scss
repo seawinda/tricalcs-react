@@ -11,7 +11,11 @@
   font-family: Arial, sans-serif;
   font-size: 32px;
   color: $h2;
+  margin-top: 0;
   @media screen and (max-width: $vtablet-width) {
     font-size: 20px;
   }
+}
+.calcs__scale {
+  margin-top: 35px;
 }
