@@ -1,7 +1,7 @@
 self.__precacheManifest = [
   {
-    "revision": "e2091168880f9f101184117926be7288",
-    "url": "/tricalcs-react/static/media/montserrat-900-normal.e2091168.ttf"
+    "revision": "cf6393d79a37aa9202a42e2c39aba1ab",
+    "url": "/tricalcs-react/static/media/montserrat-400-normal.cf6393d7.woff"
   },
   {
     "revision": "55859342718c33834559",
@@ -16,47 +16,47 @@ self.__precacheManifest = [
     "url": "/tricalcs-react/static/js/2.acb1178a.chunk.js"
   },
   {
-    "revision": "8ecf76d97d2a08e8f4bae9a50056121b",
-    "url": "/tricalcs-react/static/media/montserrat-900-normal.8ecf76d9.woff2"
-  },
-  {
-    "revision": "cf6393d79a37aa9202a42e2c39aba1ab",
-    "url": "/tricalcs-react/static/media/montserrat-400-normal.cf6393d7.woff"
-  },
-  {
     "revision": "bcd6dffa84b37fd74f2343fc77cf8684",
     "url": "/tricalcs-react/static/media/montserrat-400-normal.bcd6dffa.woff2"
   },
   {
-    "revision": "55859342718c33834559",
-    "url": "/tricalcs-react/static/js/main.ed9b94b2.chunk.js"
-  },
-  {
-    "revision": "ed36b73434949e92d709e81229bdc938",
-    "url": "/tricalcs-react/static/media/bebasneue-700-normal.ed36b734.ttf"
-  },
-  {
-    "revision": "2179e7bcc73037ebfb437ab733915f09",
-    "url": "/tricalcs-react/static/media/bebasneue-700-normal.2179e7bc.woff"
+    "revision": "8ecf76d97d2a08e8f4bae9a50056121b",
+    "url": "/tricalcs-react/static/media/montserrat-900-normal.8ecf76d9.woff2"
   },
   {
     "revision": "a761c1ca9dcf105ee1e248a3a72f321c",
     "url": "/tricalcs-react/static/media/montserrat-900-normal.a761c1ca.woff"
   },
   {
-    "revision": "e848b42d54f0196690c0f219ac979f19",
-    "url": "/tricalcs-react/static/media/montserrat-400-normal.e848b42d.ttf"
+    "revision": "55859342718c33834559",
+    "url": "/tricalcs-react/static/js/main.ed9b94b2.chunk.js"
+  },
+  {
+    "revision": "e2091168880f9f101184117926be7288",
+    "url": "/tricalcs-react/static/media/montserrat-900-normal.e2091168.ttf"
+  },
+  {
+    "revision": "2179e7bcc73037ebfb437ab733915f09",
+    "url": "/tricalcs-react/static/media/bebasneue-700-normal.2179e7bc.woff"
+  },
+  {
+    "revision": "ed36b73434949e92d709e81229bdc938",
+    "url": "/tricalcs-react/static/media/bebasneue-700-normal.ed36b734.ttf"
   },
   {
     "revision": "e481b3dc23f9326a94a99c43d9f42f7b",
     "url": "/tricalcs-react/static/media/bebasneue-700-normal.e481b3dc.woff2"
   },
   {
+    "revision": "e848b42d54f0196690c0f219ac979f19",
+    "url": "/tricalcs-react/static/media/montserrat-400-normal.e848b42d.ttf"
+  },
+  {
     "revision": "874f658784835db28ba987e678e5713a",
     "url": "/tricalcs-react/static/media/header_bg.874f6587.jpg"
   },
   {
-    "revision": "47a922d4ed7a04f284829abf84f71896",
+    "revision": "f31d24023398a39c4060f51b19a7960e",
     "url": "/tricalcs-react/index.html"
   }
 ];
