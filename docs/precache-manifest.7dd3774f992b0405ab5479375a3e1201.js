@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "e848b42d54f0196690c0f219ac979f19",
-    "url": "/tricalcs-react/static/media/montserrat-400-normal.e848b42d.ttf"
+    "revision": "8ecf76d97d2a08e8f4bae9a50056121b",
+    "url": "/tricalcs-react/static/media/montserrat-900-normal.8ecf76d9.woff2"
   },
   {
-    "revision": "4b30d41d79bf39ef8407",
-    "url": "/tricalcs-react/static/css/main.69132a23.chunk.css"
+    "revision": "e18943bdcd03856e88ab",
+    "url": "/tricalcs-react/static/css/main.88ce3a17.chunk.css"
   },
   {
     "revision": "1e31e1d407447deca828",
@@ -24,28 +24,28 @@ self.__precacheManifest = [
     "url": "/tricalcs-react/static/media/montserrat-400-normal.cf6393d7.woff"
   },
   {
-    "revision": "8ecf76d97d2a08e8f4bae9a50056121b",
-    "url": "/tricalcs-react/static/media/montserrat-900-normal.8ecf76d9.woff2"
+    "revision": "e848b42d54f0196690c0f219ac979f19",
+    "url": "/tricalcs-react/static/media/montserrat-400-normal.e848b42d.ttf"
   },
   {
-    "revision": "4b30d41d79bf39ef8407",
+    "revision": "e18943bdcd03856e88ab",
     "url": "/tricalcs-react/static/js/main.cdc78e35.chunk.js"
-  },
-  {
-    "revision": "e2091168880f9f101184117926be7288",
-    "url": "/tricalcs-react/static/media/montserrat-900-normal.e2091168.ttf"
   },
   {
     "revision": "a761c1ca9dcf105ee1e248a3a72f321c",
     "url": "/tricalcs-react/static/media/montserrat-900-normal.a761c1ca.woff"
   },
   {
-    "revision": "2179e7bcc73037ebfb437ab733915f09",
-    "url": "/tricalcs-react/static/media/bebasneue-700-normal.2179e7bc.woff"
+    "revision": "e2091168880f9f101184117926be7288",
+    "url": "/tricalcs-react/static/media/montserrat-900-normal.e2091168.ttf"
   },
   {
     "revision": "e481b3dc23f9326a94a99c43d9f42f7b",
     "url": "/tricalcs-react/static/media/bebasneue-700-normal.e481b3dc.woff2"
+  },
+  {
+    "revision": "2179e7bcc73037ebfb437ab733915f09",
+    "url": "/tricalcs-react/static/media/bebasneue-700-normal.2179e7bc.woff"
   },
   {
     "revision": "ed36b73434949e92d709e81229bdc938",
@@ -56,7 +56,7 @@ self.__precacheManifest = [
     "url": "/tricalcs-react/static/media/header_bg.848a1ac2.jpg"
   },
   {
-    "revision": "aba6e1b90461f0a6e0f4321f1c9ac68c",
+    "revision": "bb61363a14c786350aa839801c77075a",
     "url": "/tricalcs-react/index.html"
   }
 ];
