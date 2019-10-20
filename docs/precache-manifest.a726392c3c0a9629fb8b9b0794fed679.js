@@ -4,8 +4,8 @@ self.__precacheManifest = [
     "url": "/tricalcs-react/static/media/montserrat-900-normal.8ecf76d9.woff2"
   },
   {
-    "revision": "e18943bdcd03856e88ab",
-    "url": "/tricalcs-react/static/css/main.88ce3a17.chunk.css"
+    "revision": "5596d9db89b184797fb8",
+    "url": "/tricalcs-react/static/css/main.386819d4.chunk.css"
   },
   {
     "revision": "1e31e1d407447deca828",
@@ -28,8 +28,8 @@ self.__precacheManifest = [
     "url": "/tricalcs-react/static/media/montserrat-400-normal.e848b42d.ttf"
   },
   {
-    "revision": "e18943bdcd03856e88ab",
-    "url": "/tricalcs-react/static/js/main.cdc78e35.chunk.js"
+    "revision": "5596d9db89b184797fb8",
+    "url": "/tricalcs-react/static/js/main.9b62cf53.chunk.js"
   },
   {
     "revision": "a761c1ca9dcf105ee1e248a3a72f321c",
@@ -52,11 +52,11 @@ self.__precacheManifest = [
     "url": "/tricalcs-react/static/media/bebasneue-700-normal.ed36b734.ttf"
   },
   {
-    "revision": "848a1ac263cee6cca750c782a1941830",
-    "url": "/tricalcs-react/static/media/header_bg.848a1ac2.jpg"
+    "revision": "874f658784835db28ba987e678e5713a",
+    "url": "/tricalcs-react/static/media/header_bg.874f6587.jpg"
   },
   {
-    "revision": "bb61363a14c786350aa839801c77075a",
+    "revision": "b5edb6600ff53b8420a0e253714c49d5",
     "url": "/tricalcs-react/index.html"
   }
 ];

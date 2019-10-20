@@ -265,15 +265,15 @@ class Run extends Component {
                 <div className={'scale-data'}>
                     <form className={'scale-data__form'}>
                         <label className={'scale-data__label'}>
-                            Дистанция:
+                            Дистанция (км):
                             <input className={'scale-data__data'} name="distanceInput" type="number" value={this.state.distanceInput} onChange={this.onDistanceChange} />
                         </label>
                         <label className={'scale-data__label'}>
-                            Целевое время:
+                            Целевое время (чч:мм:сс):
                             <TimeField className={'scale-data__data'} value={this.state.time} showSeconds={true} onChange={this.onTimeChange}  />
                         </label>
                         <label className={'scale-data__label'}>
-                            Средний темп: <span className={'scale-data__data'}>{pace}</span>
+                            Средний темп (мин.км): <span className={'scale-data__data'}>{pace}</span>
 
                         </label>
                         <label className={'scale-data__label'}>
