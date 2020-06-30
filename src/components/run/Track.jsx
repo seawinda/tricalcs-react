@@ -19,11 +19,10 @@ class Track extends Component {
             cutsItemUpdate: [],
             isChangedPace: 0,
         };
-        this.onPaceChange = this.onPaceChange.bind(this);
+        
     }
 
-    onPaceChange(trackPace) {
-
+    onPaceChange = (trackPace)=> {
         if((TimeFormat.toS(trackPace)>0)&&(this.props.distance>0)){
             let cutChanged = this.state.trackId;
             let cutTime = TimeFormat.toS(trackPace)*(this.state.cutPart)*this.props.distance;

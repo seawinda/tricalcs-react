@@ -8,9 +8,9 @@ import TimeFormat from 'hh-mm-ss'
 
 
 export function Handle({
-                           handle: { id, value, percent },
-                           getHandleProps
-                       }) {
+        handle: { id, value, percent },
+        getHandleProps
+    }) {
     return (
         <div className={'slider-handles__item'}
             style={{
@@ -92,14 +92,6 @@ class Run extends Component {
 
         };
 
-
-
-        this.onDistanceChange = this.onDistanceChange.bind(this);
-        this.onTimeChange = this.onTimeChange.bind(this);
-        this.onCutsChange = this.onCutsChange.bind(this);
-
-        this.onCutPaceChange = this.onCutPaceChange.bind(this);
-        this.onCutMove = this.onCutMove.bind(this);
     }
 
 
@@ -132,7 +124,7 @@ class Run extends Component {
         this.setState({newCutTimeSec:0});
     }
 
-    onDistanceChange(event) {
+    onDistanceChange = (event) => {
         const target = event.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
@@ -146,14 +138,14 @@ class Run extends Component {
         }
     }
 
-    onTimeChange(time) {
+    onTimeChange = (time) => {
         this.setState({time});
         Pace(this.state.distance, TimeFormat.toS(this.state.time));
         this.setState({isChangedTime: 1});
     }
 
 
-    onCutsChange(event) {
+    onCutsChange = (event) => {
         const target = event.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
