@@ -13,7 +13,7 @@
     "gh-pages": "^2.1.1",
     "hh-mm-ss": "^1.2.0",
     "moment": "^2.24.0",
-    "node-sass": "^4.12.0",
+    "node-sass": "^7.0.0",
     "npm": "^6.12.0",
     "react": "^16.9.0",
     "react-compound-slider": "^2.2.0",
